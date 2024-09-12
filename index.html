@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaración</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #0265d6, #1ca3f1); /* Gradiente de fondo */
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden; /* Evita barras de desplazamiento */
+        }
+
+        #container {
+            text-align: center;
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        #message {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            background-color: #007bff;
+            transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+            margin: 10px;
+            position: relative;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button.no {
+            background-color: #dc3545;
+        }
+
+        .button.no:hover {
+            background-color: #c82333;
+        }
+
+        #thanks-message {
+            display: none;
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .sticker {
+            width: 200px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Estilo para los botones al moverse */
+        .move {
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <div id="message">¿Quieres ser mi novia?
+            <img src="amor.png"  >
+        </div>
+        <button id="accept" class="button">Acepto</button>
+        <button id="no" class="button no">No</button>
+        <div id="thanks-message">
+            ¡Gracias por aceptarme te prometo que sere el mejor novio de tu vida! <br>
+            <img src="fiesta.png" alt="Sticker de felicidad" class="sticker">
+        </div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const acceptButton = document.getElementById('accept');
+        const thanksMessage = document.getElementById('thanks-message');
+        const container = document.getElementById('container');
+
+        noButton.addEventListener('mouseover', function() {
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            // Mover el botón a una nueva posición aleatoria
+            const randomX = Math.random() * (containerWidth - buttonWidth);
+            const randomY = Math.random() * (containerHeight - buttonHeight);
+
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        });
+
+        acceptButton.addEventListener('click', function() {
+            document.getElementById('message').style.display = 'none';
+            thanksMessage.style.display = 'block';
+            acceptButton.style.display = 'none';
+            noButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
